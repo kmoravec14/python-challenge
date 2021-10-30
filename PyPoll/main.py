@@ -76,3 +76,19 @@ for i in range(1,numcandidates+1):
 print("--------------------------")
 print(f"Winner: {candidate_setlist[Win_index]}")
 print("--------------------------")
+
+# Store the file path associated with the output file (note the backslash may be OS specific)
+
+output_file = os.path.join("Analysis", "Output.txt")
+
+# Open the file in "read" mode ('r') and store the contents in the variable "text"
+with open(output_file, 'w') as file:
+    file.write("Election Results\n")
+    file.write("--------------------------\n")
+    file.write(f"Total Votes: {total_votes}\n")
+    file.write("--------------------------\n")
+    for i in range(1,numcandidates+1):
+        file.write(f"{candidate_setlist[i-1]}: {pct[i-1]:.2f}% ({tally[i-1]:.0f})\n")
+    file.write("--------------------------\n")
+    file.write(f"Winner: {candidate_setlist[Win_index]}\n")
+    file.write("--------------------------\n")
