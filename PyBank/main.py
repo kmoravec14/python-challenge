@@ -62,4 +62,18 @@ with open(csvpath) as csvfile:
     print(f"Greatest Decrease in Profit: {max_decrease_profit_month} (${max_decrease_profit:.0f})")
     print(" ")
 
+# Store the file path associated with the file (note the backslash may be OS specific)
+
+output_file = os.path.join("Analysis", "Output.txt")
+
+# Open the file in "read" mode ('r') and store the contents in the variable "text"
+with open(output_file, 'w') as file:
+    file.write("PyBank Class Homework #3\n")
+    file.write(" \n")
+    file.write(f"Total Months: {total_months}\n")
+    file.write(f"Total Profit: $ {total_profit:.0f}\n")
+    file.write(f"Average Change in Profit: $ {ave_change_profit:.2f}\n")
+    file.write(f"Greatest Increase in Profit: {max_increase_profit_month} (${max_increase_profit:.0f})\n")
+    file.write(f"Greatest Decrease in Profit: {max_decrease_profit_month} (${max_decrease_profit:.0f})\n")
+    
 
