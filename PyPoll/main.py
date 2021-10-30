@@ -1,14 +1,10 @@
 # Modules
 import os
 import csv
-from posix import X_OK
 
 total_votes=0
-li_votes =0
-khan_votes=0
-correy_votes=0
-otooley_votes=0
 numcandidates=0
+Win_pct = 0
  
 # creating empty lists
 voterid_list = []
@@ -16,6 +12,7 @@ county_list = []
 candidate_list = []
 candidates = []
 tally = []
+pct = []
 
 # Set path for file
 csvpath = os.path.join("Resources", "election_data.csv")
@@ -35,28 +32,47 @@ with open(csvpath) as csvfile:
 
 # Determine the number of votes
 total_votes=len(voterid_list)
-print(total_votes)
 
 # Determine number of candidates and their names
 candidate_set = set(candidate_list)
-print(candidate_set)
-
 numcandidates=len(candidate_set)
-print(numcandidates)
 
+# Convert set to list so it can be used in for loop 
 candidate_setlist = list(candidate_set)
 
-tally = [0,0,0,0]   # Need to automatically generate this - for loop below not working for some reason
+# Size Tally list to match number of candidates
+for i in range(1,numcandidates+1):
+    tally.append(0) 
 
-# for i in range(1,numcandidates):
-#    tally[i-1].append("Fun") 
+# Size Pct list to match number of candidates
+for i in range(1,numcandidates+1):
+    pct.append(0)
 
+# Count number of votes for each candidate
 for i in range(1,total_votes+1):
     for j in range(1,numcandidates+1):
       if str(candidate_list[i-1]) == str(candidate_setlist[j-1]):
         tally[j-1] = int(tally[j-1]) + 1
 
-print(tally)
-
+# Calculate the percent of votes for each candidate
 for i in range(1,numcandidates+1):
-    print(f"{candidate_setlist[i-1]} {tally[i-1]}")
+    pct[i-1] = (tally[i-1]/total_votes)*100
+
+# Determine the winner of the election
+for i in range(1,numcandidates+1):
+    if pct[i-1] > Win_pct:
+        Win_pct = pct[i-1]
+        Win_index = i-1
+
+
+# Print Output
+print(" ")
+print("Election Results")
+print("--------------------------")
+print(f"Total Votes: {total_votes}")
+print("--------------------------")
+for i in range(1,numcandidates+1):
+    print(f"{candidate_setlist[i-1]}: {pct[i-1]:.2f}% ({tally[i-1]:.0f})")
+print("--------------------------")
+print(f"Winner: {candidate_setlist[Win_index]}")
+print("--------------------------")
