@@ -42,53 +42,18 @@ candidate_set = set(candidate_list)
 print(candidate_set)
 
 numcandidates=len(candidate_set)
+print(numcandidates)
 
 candidate_setlist = list(candidate_set)
 
-""" tally = []
+tally = [0,0,0,0]   # Need to automatically generate this - for loop below not working for some reason
+
+# for i in range(1,numcandidates):
+#    tally[i-1].append("Fun") 
 
 for i in range(1,total_votes+1):
-    if candidate_setlist[0] == candidate_list[i]:
-        tally[0]=tally[0]+1
-    if candidate_setlist[0] == candidate_list[i]:
-        tally[1]=tally[0]+1
-    if candidate_setlist[0] == candidate_list[i]:
-        tally[2]=tally[0]+1
-    if candidate_setlist[0] == candidate_list[i]:
-        tally[3]=tally[0]+1 """
+    for j in range(1,numcandidates+1):
+      if str(candidate_list[i-1]) == str(candidate_setlist[j-1]):
+        tally[j-1] = int(tally[j-1]) + 1
 
-for i in range(1,total_votes):
-      if candidate_list[i] == "Li":
-        li_votes = li_votes + 1
-print(li_votes)
-
-khan_votes=0
-correy_votes=0
-otooley_votes=0
-
-
-# print(tally)
-
-""" 
-
-a = candidate_setlist[0]
-b = candidate_setlist[1]
-c = candidate_setlist[2]
-d = candidate_setlist[3]
-
-print (a)
-print (b)
-print (c)
-print (d)
-
-votes = 0
-
-#for i in range(1,numcandidates+1):
-for i in range(2,2):
-    def condition(x):
-        return x == b #candidate_setlist[i-1]
-    votes = sum(condition(x) for x in candidate_list)
-print(votes)
-
-
- """
+print(tally)
