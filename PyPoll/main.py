@@ -57,3 +57,6 @@ for i in range(1,total_votes+1):
         tally[j-1] = int(tally[j-1]) + 1
 
 print(tally)
+
+for i in range(1,numcandidates+1):
+    print(f"{candidate_setlist[i-1]} {tally[i-1]}")
